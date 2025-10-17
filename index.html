@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Travel Planner</title>
+  <link rel="shortcut icon" href="img/logo.jpeg" type="image/jpeg">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-blue-50 text-gray-900">
+
+  <!-- Header -->
+  <header class="bg-blue-600 text-white py-4 shadow-md">
+    <div class="max-w-6xl mx-auto px-4 flex justify-between items-center">
+      <h1 class="text-2xl font-bold">✈️ Travel Planner</h1>
+      <button class="bg-white text-blue-600 px-3 py-1 rounded-md text-sm font-semibold hover:bg-blue-100 transition">
+        Add Trip
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Section -->
+  <main class="max-w-6xl mx-auto px-4 py-6">
+    <section class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+
+      <!-- Trip 1 -->
+      <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
+        <img src="https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?auto=format&fit=crop&w=800&q=60"
+             alt="Paris" class="w-full h-48 object-cover">
+        <div class="p-4">
+          <h2 class="text-xl font-semibold">Paris, France</h2>
+          <p class="text-gray-600 text-sm mt-1">Romantic getaway with Eiffel Tower and art museums.</p>
+          <button onclick="showDetails('paris')" 
+            class="mt-3 bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700 transition text-sm">
+            View Details
+          </button>
+        </div>
+      </div>
+
+      <!-- Trip 2 -->
+      <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
+        <img src="https://images.unsplash.com/photo-1526772662000-3f88f10405ff?auto=format&fit=crop&w=800&q=60"
+             alt="Tokyo" class="w-full h-48 object-cover">
+        <div class="p-4">
+          <h2 class="text-xl font-semibold">Tokyo, Japan</h2>
+          <p class="text-gray-600 text-sm mt-1">Explore modern technology, sushi, and ancient temples.</p>
+          <button onclick="showDetails('tokyo')" 
+            class="mt-3 bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700 transition text-sm">
+            View Details
+          </button>
+        </div>
+      </div>
+
+      <!-- Trip 3 -->
+      <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
+        <img src="https://images.unsplash.com/photo-1533681702629-0e2b9d2f5a8b?auto=format&fit=crop&w=800&q=60"
+             alt="New York" class="w-full h-48 object-cover">
+        <div class="p-4">
+          <h2 class="text-xl font-semibold">New York, USA</h2>
+          <p class="text-gray-600 text-sm mt-1">Discover the Big Apple — skyscrapers, art, and food!</p>
+          <button onclick="showDetails('newyork')" 
+            class="mt-3 bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700 transition text-sm">
+            View Details
+          </button>
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-blue-600 text-white text-center py-4 mt-10">
+    <p class="text-sm">© 2025 Travel Planner. All Rights Reserved.</p>
+  </footer>
+
+  <!-- Modal -->
+  <div id="detailsModal" class="fixed inset-0 hidden bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+    <div class="bg-white rounded-lg max-w-md w-full shadow-lg">
+      <div class="p-5">
+        <h3 id="modalTitle" class="text-xl font-semibold mb-2"></h3>
+        <ul id="modalItinerary" class="list-disc pl-5 text-gray-700 space-y-1 text-sm"></ul>
+        <div class="mt-4 text-right">
+          <button onclick="closeModal()" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 text-sm">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Script -->
+  <script>
+    const itineraries = {
+      paris: {
+        title: "Paris, France - 3 Day Itinerary",
+        plans: [
+          "Day 1: Visit the Eiffel Tower and Seine River cruise.",
+          "Day 2: Explore the Louvre Museum and Montmartre.",
+          "Day 3: Walk around Notre-Dame and enjoy a café brunch."
+        ]
+      },
+      tokyo: {
+        title: "Tokyo, Japan - 4 Day Itinerary",
+        plans: [
+          "Day 1: Visit Shibuya Crossing and Meiji Shrine.",
+          "Day 2: Explore Akihabara tech district.",
+          "Day 3: Day trip to Mount Fuji.",
+          "Day 4: Try authentic sushi and shop in Ginza."
+        ]
+      },
+      newyork: {
+        title: "New York, USA - 3 Day Itinerary",
+        plans: [
+          "Day 1: See Times Square and Broadway.",
+          "Day 2: Visit Central Park and The Met Museum.",
+          "Day 3: Take a ferry to Statue of Liberty and Brooklyn Bridge walk."
+        ]
+      }
+    };
+
+    function showDetails(city) {
+      const modal = document.getElementById('detailsModal');
+      const title = document.getElementById('modalTitle');
+      const list = document.getElementById('modalItinerary');
+
+      const itinerary = itineraries[city];
+      title.textContent = itinerary.title;
+      list.innerHTML = itinerary.plans.map(p => `<li>${p}</li>`).join("");
+
+      modal.classList.remove('hidden');
+    }
+
+    function closeModal() {
+      document.getElementById('detailsModal').classList.add('hidden');
+    }
+  </script>
+
+</body>
+</html>
